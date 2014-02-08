@@ -1,6 +1,7 @@
 #include <memory>
 
 #include "listType.h"
+#include "stockType.h"
 
 using namespace std;
 
@@ -72,3 +73,5 @@ void listType<E>::insertAt(const E& item, int position)
 	list[position] = item;
 	length++;
 }
+
+template class listType<stockType>;

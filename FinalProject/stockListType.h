@@ -3,7 +3,6 @@
 
 #include "listType.h"
 #include "stockType.h"
-#include "listType.cpp"
 
 using namespace std;
 
