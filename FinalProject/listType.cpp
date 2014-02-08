@@ -62,7 +62,7 @@ void listType<E>::print() const
 {
 	int i;
 	for (i = 0; i < length; ++i)
-		cout << list[i] << " ";
+		cout << list[i];
 	cout << endl;
 }
 
