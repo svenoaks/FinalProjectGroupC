@@ -5,8 +5,11 @@
 #include "listType.h"
 #include "stockType.h"
 
+//#define GCC
+
 using namespace std;
 
+#ifdef GCC
 template <class T, class ...Args>
 typename std::enable_if
 <
@@ -29,6 +32,8 @@ make_unique(std::size_t n)
 	typedef typename std::remove_extent<T>::type RT;
 	return std::unique_ptr<T>(new RT[n]);
 }
+#endif
+
 
 template <class E>
 bool listType<E>::isEmpty() const
