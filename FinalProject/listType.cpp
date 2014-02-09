@@ -5,11 +5,11 @@
 #include "listType.h"
 #include "stockType.h"
 
-//#define GCC
+
 
 using namespace std;
 
-#ifdef GCC
+#ifdef __GNUC__
 template <class T, class ...Args>
 typename std::enable_if
 <
