@@ -2,6 +2,7 @@
 #include <memory>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 
 #include "stockType.h"
 #include "stockListType.h"
