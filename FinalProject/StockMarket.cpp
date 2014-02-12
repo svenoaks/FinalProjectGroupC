@@ -49,17 +49,12 @@ int main()
 
 	readFileIntoList(inFile, stockList, numberOfRows);
 
+	printHeading();
 	stockList.sortByStockSymbol();
-
-	printHeading();
-
 	stockList.print();
-
-	stockList.sortByGainLoss();
-
+	
 	printHeading();
-
-	stockList.print();
+	stockList.printByGainLoss();
 
 	system("pause");
 }
@@ -99,13 +94,13 @@ void readFileIntoList(ifstream& in, stockListType& list, int rows)
 #ifdef TEST
 stockType generateStock()
 {
-	static char l = 'A';
+	static char l = 'Z';
 	static double c = 1.1;
 	static double pc = 2.1;
 
 	stockType t{ string{ l }, c, pc };
 
-	l++;
+	l--;
 	c++;
 	pc++;
 

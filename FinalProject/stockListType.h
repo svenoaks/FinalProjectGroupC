@@ -13,7 +13,7 @@ private:
 
 public:
 	void sortByStockSymbol();
-	void sortByGainLoss();
+	void printByGainLoss();
 
 	stockListType(int maxSize);
 };

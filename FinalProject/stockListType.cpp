@@ -15,7 +15,7 @@ void stockListType::sortByStockSymbol()
 	listType<stockType>::sort();
 }
 
-void stockListType::sortByGainLoss()
+void stockListType::printByGainLoss()
 {
 	;
 }
