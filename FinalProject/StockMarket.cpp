@@ -86,7 +86,7 @@ void printClosingAssets(stockListType& list)
 }
 void printFooter()
 {
-	cout << "_*_*_*_*_*_*_*_*";
+	cout << endl << "_*_*_*_*_*_*_*_*";
 }
 int determineRows(ifstream& stream)
 {
