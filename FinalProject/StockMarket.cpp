@@ -38,6 +38,11 @@ int main()
 	ifstream inFile;
 	
 	inFile.open("stocks.txt");
+	if (!inFile)
+	{
+		cout << "File Not Found, Exiting." << endl;
+		return EXIT_FAILURE;
+	}
 
 	numberOfRows = determineRows(inFile);
 	rewind(inFile);
@@ -61,6 +66,8 @@ int main()
 	printFooter();
 
 	system("pause");
+
+	return EXIT_SUCCESS;
 }
 
 void rewind(ifstream& file)
