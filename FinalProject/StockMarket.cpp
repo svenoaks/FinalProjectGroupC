@@ -26,6 +26,9 @@ void readFileIntoList(ifstream&, stockListType&, int n);
 //of the stockListType.
 void printHeading();
 
+void printClosingAssets(stockListType&);
+void printFooter();
+
 #ifdef TEST
 stockType generateStock();
 #endif
@@ -49,12 +52,20 @@ int main()
 
 	readFileIntoList(inFile, stockList, numberOfRows);
 
+	//Output sorted by stock symbol.
 	printHeading();
 	stockList.sortByStockSymbol();
 	stockList.print();
+	printClosingAssets(stockList);
+	printFooter();
+
+	cout << endl << endl;
 	
+	//Output sorted by gain/loss.
 	printHeading();
 	stockList.printByGainLoss();
+	printClosingAssets(stockList);
+	printFooter();
 
 	system("pause");
 }
@@ -68,6 +79,14 @@ void rewind(ifstream& file)
 void printHeading()
 {
 
+}
+void printClosingAssets(stockListType& list)
+{
+	cout << "Closing Assets: " << "$" << list.totalValue();
+}
+void printFooter()
+{
+	cout << "_*_*_*_*_*_*_*_*";
 }
 int determineRows(ifstream& stream)
 {
@@ -99,6 +118,8 @@ stockType generateStock()
 	static double pc = 2.1;
 
 	stockType t{ string{ l }, c, pc };
+
+	t.setShares(5000);
 
 	l--;
 	c++;

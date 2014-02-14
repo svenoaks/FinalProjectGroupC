@@ -12,6 +12,7 @@ private:
 	unique_ptr<int[]> sortIndicesByGainLoss;
 
 public:
+	double totalValue();
 	void sortByStockSymbol();
 	void printByGainLoss();
 

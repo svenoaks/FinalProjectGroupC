@@ -25,13 +25,13 @@ private:
 	void calculateGainLoss();
 
 public:
-	void setSymbol();
-	void setOpen();
-	void setClose();
-	void setHigh();
-	void setLow();
-	void setPreviousClose();
-	void setShares();
+	void setSymbol(string);
+	void setOpen(double);
+	void setClose(double);
+	void setHigh(double);
+	void setLow(double);
+	void setPreviousClose(double);
+	void setShares(long);
 
 	string getSymbol();
 	double getOpen();

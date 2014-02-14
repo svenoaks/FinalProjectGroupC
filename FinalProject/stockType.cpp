@@ -37,3 +37,16 @@ ostream& operator<<(ostream& out, const stockType& stock)
 	return out;
 }
 
+double stockType::getClose()
+{
+	return close;
+}
+long stockType::getShares()
+{
+	return shares;
+}
+void stockType::setShares(long shares)
+{
+	this->shares = shares;
+}
+
