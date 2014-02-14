@@ -3,11 +3,12 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <iomanip>
 
 #include "stockType.h"
 #include "stockListType.h"
 
-#define TEST
+//#define TEST
 
 using namespace std;
 
@@ -20,18 +21,16 @@ int determineRows(ifstream&);
 
 //Inserts the stock listings from the file into the stockListType
 //n - the number of rows to read.
+//Function definition by Richard Stuart.
 void readFileIntoList(ifstream&, stockListType&, int n);
 
-//Prints the heading, called prior to printing the contents
+//Prints the Header, called prior to printing the contents
 //of the stockListType.
-void printHeading();
+//Function definition by Richard Stuart.
+void printHeader();
 
 void printClosingAssets(stockListType&);
 void printFooter();
-
-#ifdef TEST
-stockType generateStock();
-#endif
 
 int main()
 {
@@ -40,20 +39,14 @@ int main()
 	
 	inFile.open("stocks.txt");
 
-#ifndef TEST
 	numberOfRows = determineRows(inFile);
-#else
-	numberOfRows = 10;
-#endif
-	
 	rewind(inFile);
-
 	stockListType stockList{ numberOfRows };
 
 	readFileIntoList(inFile, stockList, numberOfRows);
 
 	//Output sorted by stock symbol.
-	printHeading();
+	printHeader();
 	stockList.sortByStockSymbol();
 	stockList.print();
 	printClosingAssets(stockList);
@@ -62,7 +55,7 @@ int main()
 	cout << endl << endl;
 	
 	//Output sorted by gain/loss.
-	printHeading();
+	printHeader();
 	stockList.printByGainLoss();
 	printClosingAssets(stockList);
 	printFooter();
@@ -76,17 +69,15 @@ void rewind(ifstream& file)
 	file.seekg(0, ios::beg);
 }
 
-void printHeading()
-{
 
-}
 void printClosingAssets(stockListType& list)
 {
-	cout << "Closing Assets: " << "$" << list.totalValue();
+	cout << "Closing Assets: " << "$" << fixed << setprecision(2) << list.totalValue() << endl;
 }
 void printFooter()
 {
-	cout << endl << "_*_*_*_*_*_*_*_*";
+	string s = "_*_*_*_*_*_*_*_*";
+	cout << s << s << s;
 }
 int determineRows(ifstream& stream)
 {
@@ -99,32 +90,34 @@ int determineRows(ifstream& stream)
 	return numberOfRows;
 }
 
+//Function definition by Richard Stuart.
 void readFileIntoList(ifstream& in, stockListType& list, int rows)
 {
-#ifdef TEST
 	for (int i = 0; i < rows; ++i)
 	{
-		list.insertAt(generateStock(), i);
+		string symbol;
+		double openPrice, closePrice, high, low, prevClose;
+		long volume;
+
+		in >> symbol >> openPrice >> closePrice >> high >> low >> prevClose >> volume;       //Worked here with symbol, and 2 #'s in file.
+		stockType t{ symbol, openPrice, closePrice, high, low, prevClose, volume };
+		list.insertAt(t, i);
 	}
-#endif
-	//Not implemented.
 }
 
-#ifdef TEST
-stockType generateStock()
+//Function definition by Richard Stuart.
+void printHeader()
 {
-	static char l = 'Z';
-	static double c = 1.1;
-	static double pc = 2.1;
+	cout << setw(40) << setfill('*') << "   First Investor's Heaven    " << setw(10) << "" << endl;
+	cout << setw(40) << setfill('*') << "      Financial Report        " << setw(10) << "" << endl;
+	cout << setfill(' ') << "Stock" << setw(20) << "Today" << setw(25) << "Previous" << setw(10) << "Percent" << endl;
+	cout << "Symbol" << setw(9) << "Open" << setw(8) << "Close" << setw(8) << "High"
+		<< setw(8) << "Low" << setw(8) << "Close" << setw(10) << "Gain" << setw(15) << "Volume" << endl;
+	cout << setw(7) << setfill('-') << " " << setw(5) << setfill(' ') << "-" << setw(4) << setfill('-') << " "
+		<< setw(3) << setfill(' ') << "-" << setw(5) << setfill('-') << " " << setw(4) << setfill(' ') << "-"
+		<< setw(4) << setfill('-') << " " << setw(5) << setfill(' ') << "-" << setw(3) << setfill('-') << " "
+		<< setw(3) << setfill(' ') << "-" << setw(6) << setfill('-') << " " << setw(5) << setfill(' ') << "-"
+		<< setw(7) << setfill('-') << " " << setw(6) << setfill(' ') << "-" << setw(6) << setfill('-') << " ";
 
-	stockType t{ string{ l }, c, pc };
-
-	t.setShares(5000);
-
-	l--;
-	c++;
-	pc++;
-
-	return t;
+	cout << setfill(' ') << endl;
 }
-#endif

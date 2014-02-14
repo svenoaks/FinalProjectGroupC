@@ -28,11 +28,12 @@ bool stockType::operator<(const stockType& other) const
 	//Not complete.
 	return this->symbol[0] < other.symbol[0];
 }
+
+//Function definition by Richard Stuart.
 ostream& operator<<(ostream& out, const stockType& stock)
 {
-	//Needs to be revised.
-
-	out << stock.symbol << " " << stock.close << " " << stock.previousClose << endl;
+	out << stock.symbol << " " << stock.open << " " << stock.close << " " << stock.high << " "
+		<< stock.low << " " << stock.previousClose << " " << stock.shares << endl;
 
 	return out;
 }
