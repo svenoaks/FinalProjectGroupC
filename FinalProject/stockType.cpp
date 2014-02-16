@@ -30,10 +30,10 @@ stockType::stockType()
 
 bool stockType::operator<(const stockType& other) const
 {
-	assert(this->symbol.length() > 0 && other.symbol.length() > 0);
+	assert(symbol.length() > 0 && other.symbol.length() > 0);
 
 	//Not complete.
-	return this->symbol[0] < other.symbol[0];
+	return symbol[0] < other.symbol[0];
 }
 
 //Function definition by Richard Stuart.
