@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cassert>
+#include <iomanip>
 
 stockType::stockType(string symbol, double close, double previousClose,
 	double open, double high, double low, long shares)
@@ -14,9 +15,15 @@ stockType::stockType(string symbol, double close, double previousClose,
 	this->low = low;
 	this->shares = shares;
 
-	//calculateGainLoss();
+	calculateGainLoss();
 }
 
+//Function definition by Jacob Mason.
+void stockType::calculateGainLoss()
+{
+	//formula (Price Sold - Purchase Price)/(Purchase Price) 
+	gainLoss = (close - open) / open;
+}
 //Needed for temporary object in listType::sort().
 stockType::stockType()
 {}
@@ -33,7 +40,9 @@ bool stockType::operator<(const stockType& other) const
 ostream& operator<<(ostream& out, const stockType& stock)
 {
 	out << stock.symbol << " " << stock.open << " " << stock.close << " " << stock.high << " "
-		<< stock.low << " " << stock.previousClose << " " << stock.shares << endl;
+		<< stock.low << " " << stock.previousClose << " " << fixed << setprecision(2) 
+		<< stock.gainLoss * 100.0 << "% " 
+		<< stock.shares << endl;
 
 	return out;
 }

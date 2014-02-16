@@ -76,7 +76,6 @@ void rewind(ifstream& file)
 	file.seekg(0, ios::beg);
 }
 
-
 void printClosingAssets(stockListType& list)
 {
 	cout << "Closing Assets: " << "$" << fixed << setprecision(2) << list.totalValue() << endl;
@@ -106,7 +105,7 @@ void readFileIntoList(ifstream& in, stockListType& list, int rows)
 		double openPrice, closePrice, high, low, prevClose;
 		long volume;
 
-		in >> symbol >> openPrice >> closePrice >> high >> low >> prevClose >> volume;       //Worked here with symbol, and 2 #'s in file.
+		in >> symbol >> openPrice >> closePrice >> high >> low >> prevClose >> volume;
 		stockType t{ symbol, openPrice, closePrice, high, low, prevClose, volume };
 		list.insertAt(t, i);
 	}
