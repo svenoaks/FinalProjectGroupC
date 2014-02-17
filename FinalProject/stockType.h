@@ -11,11 +11,11 @@ class stockType
 	friend istream& operator>>(istream&, stockType&);
 
 private:
-	
+
 	string symbol;
 
 	double close, previousClose;
-	
+
 	double open, high, low;
 
 	double gainLoss;

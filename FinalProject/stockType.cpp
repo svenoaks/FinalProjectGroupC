@@ -18,35 +18,33 @@ stockType::stockType(string symbol, double close, double previousClose,
 	calculateGainLoss();
 }
 
+string stockType::getSymbol()
+{
+	return symbol;
+}
 //Function definition by Jacob Mason.
 void stockType::calculateGainLoss()
 {
 	//formula (Price Sold - Purchase Price)/(Purchase Price) 
-	gainLoss = (close - open) / open;
+	//((close - open)/(open)) * 100 
+	this->gainLoss = (((this->close - this->open) / (this->open)) * 100);
 }
+
 //Needed for temporary object in listType::sort().
 stockType::stockType()
 {}
 
 bool stockType::operator<(const stockType& other) const
 {
-	assert(symbol.length() > 0 && other.symbol.length() > 0);
+	assert(this->symbol.length() > 0 && other.symbol.length() > 0);
 
 	//Not complete.
-	return symbol[0] < other.symbol[0];
+	return this->symbol[0] < other.symbol[0];
 }
-
-//Function definition by Richard Stuart.
-ostream& operator<<(ostream& out, const stockType& stock)
+double stockType::getOpen()
 {
-	out << stock.symbol << " " << stock.open << " " << stock.close << " " << stock.high << " "
-		<< stock.low << " " << stock.previousClose << " " << fixed << setprecision(2) 
-		<< stock.gainLoss * 100.0 << "% " 
-		<< stock.shares << endl;
-
-	return out;
+	return open;
 }
-
 double stockType::getClose()
 {
 	return close;
@@ -60,3 +58,19 @@ void stockType::setShares(long shares)
 	this->shares = shares;
 }
 
+double stockType::getGainLoss()
+{
+	return gainLoss;
+}
+//Function definition by Richard Stuart.
+ostream& operator<<(ostream& out, const stockType& stock)
+{
+	out << fixed << showpoint << setprecision(2)
+		<< setw(6) << stock.symbol << " " << setw(9) << stock.open << " "
+		<< setw(7) << stock.close << " " << setw(7) << stock.high << " "
+		<< setw(7) << stock.low << " " << setw(7) << stock.previousClose << " "
+		<< setw(8) << stock.gainLoss << "% " << " "
+		<< setw(12) << stock.shares << endl;
+
+	return out;
+}

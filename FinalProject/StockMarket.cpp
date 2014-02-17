@@ -106,7 +106,7 @@ void readFileIntoList(ifstream& in, stockListType& list, int rows)
 		long volume;
 
 		in >> symbol >> openPrice >> closePrice >> high >> low >> prevClose >> volume;
-		stockType t{ symbol, openPrice, closePrice, high, low, prevClose, volume };
+		stockType t{ symbol, closePrice, prevClose, openPrice, high, low, volume };
 		list.insertAt(t, i);
 	}
 }
