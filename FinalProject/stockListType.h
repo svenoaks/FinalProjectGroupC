@@ -11,8 +11,9 @@ class stockListType : public listType<stockType>
 {
 private:
 	vector<int> sortIndicesByGainLoss;
-	int vectorSize;
-
+	int numberOfIndices; //keep track of how many elements are actually in
+						//sortIndicesByGainLoss, this is important
+						//because vector initializes every int to zero
 public:
 	double totalValue();
 	void sortByStockSymbol();
