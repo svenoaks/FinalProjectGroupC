@@ -1,3 +1,5 @@
+//Header file by Steve Myers.
+
 #ifndef listType_H
 #define listType_H
 

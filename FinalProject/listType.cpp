@@ -1,11 +1,11 @@
+//File by Steve Myers.
+
 #include <memory>
 #include <type_traits>
 #include <utility>
 
 #include "listType.h"
 #include "stockType.h"
-
-
 
 using namespace std;
 

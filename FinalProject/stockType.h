@@ -1,3 +1,5 @@
+//Header file by Steve Myers.
+
 #ifndef stockType_H
 #define stockType_H
 
@@ -11,17 +13,11 @@ class stockType
 	friend istream& operator>>(istream&, stockType&);
 
 private:
-
 	string symbol;
-
 	double close, previousClose;
-
 	double open, high, low;
-
 	double gainLoss;
-
 	long shares;
-
 	void calculateGainLoss();
 
 public:

@@ -1,3 +1,11 @@
+//Program to read stock information from a file into a stockListType object
+//containing stockType objects. Program outputs the stocks sorted by symbol
+//and by the gain/loss percentage.
+
+//2-19-2014
+
+//StockMarket.cpp by Steve Myers except where noted.
+
 #include <iostream>
 #include <memory>
 #include <fstream>
@@ -28,7 +36,6 @@ void readFileIntoList(ifstream&, stockListType&, int n);
 //of the stockListType.
 //Function definition by Richard Stuart.
 void printHeader();
-
 void printClosingAssets(stockListType&);
 void printFooter();
 
@@ -65,6 +72,8 @@ int main()
 	printClosingAssets(stockList);
 	printFooter();
 
+	cout << endl;
+
 	system("pause");
 
 	return EXIT_SUCCESS;
@@ -80,11 +89,13 @@ void printClosingAssets(stockListType& list)
 {
 	cout << "Closing Assets: " << "$" << fixed << setprecision(2) << list.totalValue() << endl;
 }
+
 void printFooter()
 {
 	string s = "_*_*_*_*_*_*_*_*";
 	cout << s << s << s;
 }
+
 int determineRows(ifstream& stream)
 {
 	int numberOfRows = 0;
@@ -101,13 +112,9 @@ void readFileIntoList(ifstream& in, stockListType& list, int rows)
 {
 	for (int i = 0; i < rows; ++i)
 	{
-		string symbol;
-		double openPrice, closePrice, high, low, prevClose;
-		long volume;
-
-		in >> symbol >> openPrice >> closePrice >> high >> low >> prevClose >> volume;
-		stockType t{ symbol, closePrice, prevClose, openPrice, high, low, volume };
-		list.insertAt(t, i);
+		stockType aStock{};
+		in >> aStock;
+		list.insertAt(aStock, i);
 	}
 }
 

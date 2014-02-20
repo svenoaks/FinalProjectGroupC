@@ -1,17 +1,18 @@
+//Function definition authors as noted.
+
 #include "stockListType.h"
 #include "stockType.h"
 #include "listType.h"
 
 using namespace std;
 
+//Function definition by Steve Myers.
 stockListType::stockListType(int maxSize) : listType<stockType>{ maxSize }
-{
+{}
 
-}
-
+//Function definition by Steve Myers.
 void stockListType::sortByStockSymbol()
 {
-
 	listType<stockType>::sort();
 }
 
@@ -45,11 +46,10 @@ void stockListType::printByGainLoss()
 	}
 
 	//printByGainLoss
-	//needs the rest of the output too, but this is just to demonstrate
-	//that it works
 	for (int i = 0; i < getLength(); i++)
 		cout << list[sortIndicesByGainLoss[i]];
 }
+
 //function definition by Jacob Mason
 bool stockListType::not_previous_index(int n)
 {
@@ -59,6 +59,7 @@ bool stockListType::not_previous_index(int n)
 	return true;
 }
 
+//Function definition by Steve Myers.
 double stockListType::totalValue()
 {
 	double total = 0.0;

@@ -1,3 +1,5 @@
+//Header file by Steve Myers except as noted.
+
 #ifndef stockListType_H
 #define stockListType_H
 
@@ -10,6 +12,7 @@ using namespace std;
 class stockListType : public listType<stockType>
 {
 private:
+	//private members by Jacob Mason.
 	vector<int> sortIndicesByGainLoss;
 	int numberOfIndices; //keep track of how many elements are actually in
 						//sortIndicesByGainLoss, this is important

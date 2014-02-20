@@ -1,3 +1,5 @@
+//Function definitions by Steve Myers except as noted.
+
 #include "stockType.h"
 
 #include <iostream>
@@ -22,15 +24,13 @@ string stockType::getSymbol()
 {
 	return symbol;
 }
-//Function definition by Jacob Mason.
+
 void stockType::calculateGainLoss()
 {
-	//formula (Price Sold - Purchase Price)/(Purchase Price) 
-	//((close - open)/(open)) * 100 
-	this->gainLoss = (((this->close - this->open) / (this->open)) * 100);
+	gainLoss = (close - previousClose) / previousClose * 100.0;
 }
 
-//Needed for temporary object in listType::sort().
+
 stockType::stockType()
 {}
 
@@ -38,7 +38,6 @@ bool stockType::operator<(const stockType& other) const
 {
 	assert(this->symbol.length() > 0 && other.symbol.length() > 0);
 
-	//Not complete.
 	return this->symbol[0] < other.symbol[0];
 }
 double stockType::getOpen()
@@ -62,6 +61,17 @@ double stockType::getGainLoss()
 {
 	return gainLoss;
 }
+
+istream& operator>>(istream& in, stockType& stock)
+{
+	in >> stock.symbol >> stock.open >> stock.close
+		>> stock.high >> stock.low >> stock.previousClose >> stock.shares;
+
+	stock.calculateGainLoss();
+
+	return in;
+}
+
 //Function definition by Richard Stuart.
 ostream& operator<<(ostream& out, const stockType& stock)
 {
